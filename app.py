@@ -6,24 +6,35 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Oscilador Forzado", layout="centered")
 
 st.title("Oscilador Forzado")
+st.sidebar.markdown('''
+Software didáctico diseñando
+por
+* D.C. José Manuel Nápoles Duarte
 
+En apoyo a las materias:
+Física Básica II
+y
+Fenómenos Electroópticos
+
+de la Facultad de Ciencias Químicas
+de la Universidad Autónoma de Chihuahua
+''')
+st.sidebar.image('https://raw.githubusercontent.com/napoles-uach/ondas/refs/heads/main/logofcq.png')
 # Descripción breve
 st.write("""
 Esta aplicación permite visualizar la amplitud de un oscilador forzado con distintos parámetros:
-- ($F_0$): Magnitud de la fuerza externa.
-- (m): Masa del oscilador.
-- (b): Coeficiente de amortiguamiento.
-- ($\omega_0$): Frecuencia natural del oscilador.
-- ($\omega$): Frecuencia de excitación.
 """)
 
 # Barra lateral para configurar parámetros
-st.sidebar.title("Parámetros del sistema")
+#st.sidebar.title("Parámetros del sistema")
+col1, col2, col3 = st.columns(3)
+with col1:
+    F0 = st.slider("F0 (magnitud de la fuerza)", 0.1, 10.0, 1.0, step=0.1)
+    m = st.slider("m (masa)", 0.1, 10.0, 1.0, step=0.1)
 
-F0 = st.sidebar.slider("F0 (magnitud de la fuerza)", 0.1, 10.0, 1.0, step=0.1)
-m = st.sidebar.slider("m (masa)", 0.1, 10.0, 1.0, step=0.1)
-b = st.sidebar.slider("b (amortiguamiento)", 0.0, 5.0, 0.2, step=0.1)
-omega0 = st.sidebar.slider("ω₀ (frecuencia natural)", 0.1, 5.0, 1.0, step=0.1)
+with col3:
+    b = st.slider("b (amortiguamiento)", 0.0, 5.0, 0.2, step=0.1)
+    omega0 = st.slider("ω₀ (frecuencia natural)", 0.1, 5.0, 1.0, step=0.1)
 
 #st.sidebar.title("Rango de Frecuencias de Excitación (ω)")
 omega_min = 0 #st.sidebar.slider("ω mínimo", 0.0, 5.0, 0.0, step=0.1)
